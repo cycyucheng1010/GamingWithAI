@@ -1,0 +1,644 @@
+/* Premium Traditional Minimalist UI Style for Gomoku GameingwithAI */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+
+:root {
+  --bg-primary: #121820;
+  --bg-secondary: #0a0d13;
+  --panel-bg: rgba(26, 34, 46, 0.75);
+  --panel-border: rgba(255, 255, 255, 0.08);
+  --wood-light: #e5ba7d;
+  --wood-dark: #cc9f62;
+  --grid-line: rgba(43, 29, 12, 0.28);
+  --stone-black: radial-gradient(circle at 30% 30%, #3a3a3a 0%, #151515 45%, #050505 85%, #000000 100%);
+  --stone-white: radial-gradient(circle at 30% 30%, #ffffff 0%, #f6f6f6 30%, #e2e2e2 75%, #bbbbbb 100%);
+  --accent-gold: #cfa862;
+  --text-main: #f5f6f8;
+  --text-muted: #8d9bb0;
+}
+
+.game-container {
+  min-height: 100vh;
+  background: radial-gradient(circle at center, #1e2836 0%, var(--bg-primary) 100%);
+  color: var(--text-main);
+  font-family: 'Noto Sans TC', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 2rem 1.5rem;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  position: relative;
+}
+
+header {
+  z-index: 1;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.logo-text {
+  font-family: 'Cinzel', serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  background: linear-gradient(135deg, #ffffff 0%, var(--accent-gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+  text-transform: uppercase;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.logo-subtext {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  margin-top: 0.4rem;
+  font-weight: 500;
+}
+
+/* Main Layout Grid */
+.game-arena {
+  width: 100%;
+  max-width: 1100px;
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 2.5rem;
+  z-index: 1;
+  align-items: start;
+}
+
+/* Glassmorphism Panel base */
+.glass-panel {
+  background: var(--panel-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  padding: 1.75rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+  transition: all 0.3s ease;
+}
+
+.glass-panel:hover {
+  border-color: rgba(207, 168, 98, 0.25);
+  box-shadow: 0 12px 45px rgba(207, 168, 98, 0.05);
+}
+
+/* Controls Panel */
+.controls-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.6rem;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: 2px;
+  color: var(--accent-gold);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-group-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.setting-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.setting-label {
+  color: var(--text-muted);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+}
+
+/* System Stats Panel */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.stat-card {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  padding: 0.85rem 0.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-val {
+  font-family: 'Cinzel', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 0.3rem;
+  color: #ffffff;
+}
+
+.gold-text {
+  color: var(--accent-gold);
+}
+
+.stat-label-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.small-stone-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  border: 0.5px solid rgba(255, 255, 255, 0.25);
+}
+
+.small-stone-indicator.black {
+  background: #222222;
+}
+
+.small-stone-indicator.white {
+  background: #ffffff;
+}
+
+/* Action Buttons */
+.action-btn {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text-main);
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  letter-spacing: 0.5px;
+}
+
+.action-btn:hover:not(:disabled) {
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+  background: rgba(207, 168, 98, 0.05);
+  transform: translateY(-1px);
+}
+
+.action-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.action-btn:disabled {
+  border-color: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.15);
+  background: transparent;
+  cursor: not-allowed;
+}
+
+.btn-reset {
+  border-color: rgba(207, 168, 98, 0.3);
+  color: var(--accent-gold);
+}
+
+.btn-reset:hover:not(:disabled) {
+  background: rgba(207, 168, 98, 0.09);
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+}
+
+/* Status Indicator Banner */
+.status-banner {
+  background: rgba(0, 0, 0, 0.2);
+  border-left: 3px solid var(--accent-gold);
+  padding: 0.8rem 1.1rem;
+  border-radius: 0 8px 8px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.02);
+  border-right: 1px solid rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.status-message {
+  font-size: 1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  letter-spacing: 0.5px;
+}
+
+.status-banner.winner-1 {
+  background: rgba(0, 0, 0, 0.35);
+  border-color: #ffffff;
+}
+
+.status-banner.winner-2 {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--accent-gold);
+}
+
+.status-banner.draw {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: var(--text-muted);
+}
+
+.turn-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+  border: 0.5px solid rgba(255, 255, 255, 0.2);
+}
+
+.turn-dot.black {
+  background: #151515;
+}
+
+.turn-dot.white {
+  background: #ffffff;
+}
+
+/* Audio toggle */
+.sound-toggle-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-muted);
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sound-toggle-btn:hover {
+  border-color: var(--accent-gold);
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.sound-toggle-btn.muted {
+  border-color: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.15);
+}
+
+/* Move Log panel */
+.movelog-panel {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  padding: 0.85rem;
+  max-height: 150px;
+  overflow-y: auto;
+  font-family: monospace;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.movelog-title {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+  letter-spacing: 1.5px;
+}
+
+.movelog-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.4rem 0.85rem;
+}
+
+.movelog-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--text-main);
+}
+
+/* The Gomoku Board Panel */
+.board-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2.25rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.board-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-width: 580px;
+  background: linear-gradient(135deg, var(--wood-light) 0%, var(--wood-dark) 100%);
+  border: 6px solid #422d17;
+  border-radius: 4px;
+  box-shadow: 
+    0 12px 50px rgba(0, 0, 0, 0.8),
+    inset 0 0 20px rgba(0, 0, 0, 0.15);
+  padding: 15px; /* Spacing from outer rim to first line */
+  box-sizing: border-box;
+}
+
+/* Grid drawing */
+.gomoku-grid {
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  grid-template-rows: repeat(15, 1fr);
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Grid lines rendering inside cell */
+.board-cell {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Draw grid lines crossing exactly at the center of each cell */
+.board-cell::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--grid-line);
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.board-cell::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: var(--grid-line);
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+/* Clip edge lines to make board grid perfect */
+.board-cell[data-col="0"]::before { left: 50%; }
+.board-cell[data-col="14"]::before { right: 50%; }
+.board-cell[data-row="0"]::after { top: 50%; }
+.board-cell[data-row="14"]::after { bottom: 50%; }
+
+/* Star point decoration (Classic Solid Dots) */
+.star-dot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: rgba(29, 19, 8, 0.85);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Interactable hitbox */
+.cell-hitbox {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  z-index: 5;
+  cursor: pointer;
+}
+
+/* Remove hover stone previews - board default has no stone shape assist! */
+/* We keep cursor pointer on cell hover to show interactivity, but no ghost stone shapes are drawn. */
+
+/* Laid stones styling (Slate Black vs. Shell White) */
+.stone {
+  position: absolute;
+  width: 88%;
+  height: 88%;
+  border-radius: 50%;
+  z-index: 10;
+  pointer-events: none;
+  box-sizing: border-box;
+  animation: place-stone-anim 0.22s cubic-bezier(0.18, 0.9, 0.32, 1.15) forwards;
+}
+
+.stone.player-1 {
+  background: var(--stone-black);
+  border: 0.5px solid rgba(255, 255, 255, 0.15);
+  filter: drop-shadow(3px 4px 5px rgba(0, 0, 0, 0.45));
+}
+
+.stone.player-2 {
+  background: var(--stone-white);
+  border: 0.5px solid rgba(0, 0, 0, 0.18);
+  filter: drop-shadow(3px 4px 5px rgba(0, 0, 0, 0.35));
+}
+
+/* Red Dot Highlight Indicator for Last Placed Stone */
+.last-move-indicator {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  background: #d32f2f;
+  border-radius: 50%;
+  z-index: 11;
+  pointer-events: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.stone.player-2 + .last-move-indicator {
+  /* Give white stone last indicator a slightly darker surround if needed, but red pops great on both */
+  background: #d32f2f;
+}
+
+/* Winning Highlights - Golden Ring Pulse on Victory Stones */
+.winning-glow {
+  z-index: 12;
+  animation: win-stone-pulse 1.2s infinite alternate ease-in-out;
+  box-shadow: 
+    0 0 0 2px #ffc107, 
+    0 4px 10px rgba(0,0,0,0.6);
+}
+
+/* Animations */
+@keyframes place-stone-anim {
+  0% {
+    transform: scale(1.4);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes win-stone-pulse {
+  0% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  100% {
+    transform: scale(1.04);
+    filter: brightness(1.15);
+  }
+}
+
+/* Responsive Queries */
+@media (max-width: 900px) {
+  .game-arena {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .controls-section {
+    order: 2; /* Puts controls below board */
+  }
+  
+  .board-panel {
+    order: 1;
+    padding: 0.5rem;
+  }
+  
+  .logo-text {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .game-container {
+    padding: 1rem 0.5rem;
+  }
+  
+  .logo-text {
+    font-size: 1.6rem;
+  }
+  
+  .logo-subtext {
+    letter-spacing: 4px;
+    font-size: 0.75rem;
+  }
+  
+  .glass-panel {
+    padding: 1.2rem;
+  }
+  
+  .board-wrapper {
+    padding: 10px;
+    border-width: 4px;
+  }
+}
+
+/* ==========================================================================
+   Multi-Game Hub & Japanese Word Learning Custom CSS
+   ========================================================================== */
+
+/* Main Menu & Mode Selector Card Premium Styling */
+.main-menu-card, .mode-card {
+  transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.main-menu-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--accent-gold);
+  box-shadow: 0 15px 45px rgba(207, 168, 98, 0.15);
+}
+
+.mode-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 12px 35px rgba(255, 255, 255, 0.05);
+}
+
+/* Back button in headers */
+.back-menu-btn {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  font-size: 0.9rem !important;
+  padding: 0.6rem 1.1rem !important;
+  transition: all 0.2s ease;
+}
+
+.back-menu-btn:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
+  transform: scale(1.03);
+}
+
+/* Interactive Option Selection buttons */
+.option-btn-hover {
+  transition: all 0.25s ease;
+}
+
+.option-btn-hover:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  transform: translateX(4px);
+}
+
+/* Quiz Flashcard Hover animations */
+.quiz-card-hover {
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+}
+
+.quiz-card-hover:hover {
+  transform: scale(1.04);
+  box-shadow: 0 12px 35px rgba(207, 168, 98, 0.15) !important;
+}
+
+/* Keyframe animations */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
