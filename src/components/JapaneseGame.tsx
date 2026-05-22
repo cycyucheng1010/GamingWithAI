@@ -34,6 +34,42 @@ const VOCAB_DATABASE: Category[] = [
       { id: 'h8', japanese: 'く', hiragana: 'く', romaji: 'ku', english: 'ku' },
       { id: 'h9', japanese: 'け', hiragana: 'け', romaji: 'ke', english: 'ke' },
       { id: 'h10', japanese: 'こ', hiragana: 'こ', romaji: 'ko', english: 'ko' },
+      { id: 'h11', japanese: 'さ', hiragana: 'さ', romaji: 'sa', english: 'sa' },
+      { id: 'h12', japanese: 'し', hiragana: 'し', romaji: 'shi', english: 'shi' },
+      { id: 'h13', japanese: 'す', hiragana: 'す', romaji: 'su', english: 'su' },
+      { id: 'h14', japanese: 'せ', hiragana: 'せ', romaji: 'se', english: 'se' },
+      { id: 'h15', japanese: 'そ', hiragana: 'そ', romaji: 'so', english: 'so' },
+      { id: 'h16', japanese: 'た', hiragana: 'た', romaji: 'ta', english: 'ta' },
+      { id: 'h17', japanese: 'ち', hiragana: 'ち', romaji: 'chi', english: 'chi' },
+      { id: 'h18', japanese: 'つ', hiragana: 'つ', romaji: 'tsu', english: 'tsu' },
+      { id: 'h19', japanese: 'て', hiragana: 'て', romaji: 'te', english: 'te' },
+      { id: 'h20', japanese: 'と', hiragana: 'と', romaji: 'to', english: 'to' },
+      { id: 'h21', japanese: 'な', hiragana: 'な', romaji: 'na', english: 'na' },
+      { id: 'h22', japanese: 'ニ', hiragana: 'に', romaji: 'ni', english: 'ni' },
+      { id: 'h23', japanese: 'ぬ', hiragana: 'ぬ', romaji: 'nu', english: 'nu' },
+      { id: 'h24', japanese: 'ね', hiragana: 'ね', romaji: 'ne', english: 'ne' },
+      { id: 'h25', japanese: 'の', hiragana: 'の', romaji: 'no', english: 'no' },
+      { id: 'h26', japanese: 'は', hiragana: 'は', romaji: 'ha', english: 'ha' },
+      { id: 'h27', japanese: 'ひ', hiragana: 'ひ', romaji: 'hi', english: 'hi' },
+      { id: 'h28', japanese: 'ふ', hiragana: 'ふ', romaji: 'fu', english: 'fu' },
+      { id: 'h29', japanese: 'へ', hiragana: 'へ', romaji: 'he', english: 'he' },
+      { id: 'h30', japanese: 'ほ', hiragana: 'ほ', romaji: 'ho', english: 'ho' },
+      { id: 'h31', japanese: 'ま', hiragana: 'ま', romaji: 'ma', english: 'ma' },
+      { id: 'h32', japanese: 'み', hiragana: 'み', romaji: 'mi', english: 'mi' },
+      { id: 'h33', japanese: 'む', hiragana: 'む', romaji: 'mu', english: 'mu' },
+      { id: 'h34', japanese: 'め', hiragana: 'め', romaji: 'me', english: 'me' },
+      { id: 'h35', japanese: 'も', hiragana: 'も', romaji: 'mo', english: 'mo' },
+      { id: 'h36', japanese: 'や', hiragana: 'や', romaji: 'ya', english: 'ya' },
+      { id: 'h37', japanese: 'ゆ', hiragana: 'ゆ', romaji: 'yu', english: 'yu' },
+      { id: 'h38', japanese: 'よ', hiragana: 'よ', romaji: 'yo', english: 'yo' },
+      { id: 'h39', japanese: 'ら', hiragana: 'ら', romaji: 'ra', english: 'ra' },
+      { id: 'h40', japanese: 'り', hiragana: 'り', romaji: 'ri', english: 'ri' },
+      { id: 'h41', japanese: 'る', hiragana: 'る', romaji: 'ru', english: 'ru' },
+      { id: 'h42', japanese: 'れ', hiragana: 'れ', romaji: 're', english: 're' },
+      { id: 'h43', japanese: 'ろ', hiragana: 'ろ', romaji: 'ro', english: 'ro' },
+      { id: 'h44', japanese: 'わ', hiragana: 'わ', romaji: 'wa', english: 'wa' },
+      { id: 'h45', japanese: 'を', hiragana: 'を', romaji: 'wo', english: 'wo' },
+      { id: 'h46', japanese: 'ん', hiragana: 'ん', romaji: 'n', english: 'n' },
     ]
   },
   {
@@ -52,6 +88,42 @@ const VOCAB_DATABASE: Category[] = [
       { id: 'k8', japanese: 'ク', hiragana: 'ク', romaji: 'ku', english: 'ku' },
       { id: 'k9', japanese: 'ケ', hiragana: 'ケ', romaji: 'ke', english: 'ke' },
       { id: 'k10', japanese: 'コ', hiragana: 'コ', romaji: 'ko', english: 'ko' },
+      { id: 'k11', japanese: 'サ', hiragana: 'サ', romaji: 'sa', english: 'sa' },
+      { id: 'k12', japanese: 'シ', hiragana: 'シ', romaji: 'shi', english: 'shi' },
+      { id: 'k13', japanese: 'ス', hiragana: 'ス', romaji: 'su', english: 'su' },
+      { id: 'k14', japanese: 'セ', hiragana: 'セ', romaji: 'se', english: 'se' },
+      { id: 'k15', japanese: 'ソ', hiragana: 'ソ', romaji: 'so', english: 'so' },
+      { id: 'k16', japanese: 'タ', hiragana: 'タ', romaji: 'ta', english: 'ta' },
+      { id: 'k17', japanese: 'チ', hiragana: 'チ', romaji: 'chi', english: 'chi' },
+      { id: 'k18', japanese: 'ツ', hiragana: 'ツ', romaji: 'tsu', english: 'tsu' },
+      { id: 'k19', japanese: 'テ', hiragana: 'テ', romaji: 'te', english: 'te' },
+      { id: 'k20', japanese: 'ト', hiragana: 'ト', romaji: 'to', english: 'to' },
+      { id: 'k21', japanese: 'ナ', hiragana: 'ナ', romaji: 'na', english: 'na' },
+      { id: 'k22', japanese: 'ニ', hiragana: 'ニ', romaji: 'ni', english: 'ni' },
+      { id: 'k23', japanese: 'ヌ', hiragana: 'ヌ', romaji: 'nu', english: 'nu' },
+      { id: 'k24', japanese: 'ネ', hiragana: 'ネ', romaji: 'ne', english: 'ne' },
+      { id: 'k25', japanese: 'ノ', hiragana: 'ノ', romaji: 'no', english: 'no' },
+      { id: 'k26', japanese: 'ハ', hiragana: 'ハ', romaji: 'ha', english: 'ha' },
+      { id: 'k27', japanese: 'ヒ', hiragana: 'ヒ', romaji: 'hi', english: 'hi' },
+      { id: 'k28', japanese: 'フ', hiragana: 'フ', romaji: 'fu', english: 'fu' },
+      { id: 'k29', japanese: 'ヘ', hiragana: 'ヘ', romaji: 'he', english: 'he' },
+      { id: 'k30', japanese: 'ホ', hiragana: 'ホ', romaji: 'ho', english: 'ho' },
+      { id: 'k31', japanese: 'マ', hiragana: 'マ', romaji: 'ma', english: 'ma' },
+      { id: 'k32', japanese: 'ミ', hiragana: 'ミ', romaji: 'mi', english: 'mi' },
+      { id: 'k33', japanese: 'ム', hiragana: 'ム', romaji: 'mu', english: 'mu' },
+      { id: 'k34', japanese: 'メ', hiragana: 'メ', romaji: 'me', english: 'me' },
+      { id: 'k35', japanese: 'モ', hiragana: 'モ', romaji: 'mo', english: 'mo' },
+      { id: 'k36', japanese: 'ヤ', hiragana: 'ヤ', romaji: 'ya', english: 'ya' },
+      { id: 'k37', japanese: 'ユ', hiragana: 'ユ', romaji: 'yu', english: 'yu' },
+      { id: 'k38', japanese: 'ヨ', hiragana: 'ヨ', romaji: 'yo', english: 'yo' },
+      { id: 'k39', japanese: 'ラ', hiragana: 'ラ', romaji: 'ra', english: 'ra' },
+      { id: 'k40', japanese: 'リ', hiragana: 'リ', romaji: 'ri', english: 'ri' },
+      { id: 'k41', japanese: 'ル', hiragana: 'ル', romaji: 'ru', english: 'ru' },
+      { id: 'k42', japanese: 'レ', hiragana: 'レ', romaji: 're', english: 're' },
+      { id: 'k43', japanese: 'ロ', hiragana: 'ロ', romaji: 'ro', english: 'ro' },
+      { id: 'k44', japanese: 'ワ', hiragana: 'ワ', romaji: 'wa', english: 'wa' },
+      { id: 'k45', japanese: 'ヲ', hiragana: 'ヲ', romaji: 'wo', english: 'wo' },
+      { id: 'k46', japanese: 'ン', hiragana: 'ン', romaji: 'n', english: 'n' },
     ]
   },
   {
@@ -704,9 +776,26 @@ function WordQuizGame({ onBack, updateHighScore }: { onBack: () => void, updateH
     sfx.playClick();
     setSelectedCategory(cat);
     
-    // Shuffle and pick 10 words (or all if category has less than 10)
-    const shuffled = [...cat.items].sort(() => 0.5 - Math.random());
-    const selectedQ = shuffled.slice(0, 10);
+    let selectedQ: VocabItem[] = [];
+    if (cat.id === 'katakana_basic') {
+      // 100 consecutive questions randomly selected, perfectly covering all 46 characters.
+      const allKatakana = [...cat.items];
+      // Shuffle standard set to make sure initial coverage order is randomized
+      const set1 = [...allKatakana].sort(() => 0.5 - Math.random());
+      const set2 = [...allKatakana].sort(() => 0.5 - Math.random());
+      
+      // We need 100 items. Currently 46 + 46 = 92 items. We need 8 more.
+      const extraCount = 100 - (allKatakana.length * 2); // 8
+      const extraItems = [...allKatakana].sort(() => 0.5 - Math.random()).slice(0, extraCount);
+      
+      const combined = [...set1, ...set2, ...extraItems];
+      // Final shuffle of the entire 100-item array
+      selectedQ = combined.sort(() => 0.5 - Math.random());
+    } else {
+      // Standard behavior: Shuffle and pick 10 words
+      const shuffled = [...cat.items].sort(() => 0.5 - Math.random());
+      selectedQ = shuffled.slice(0, 10);
+    }
     
     setQuestions(selectedQ);
     setCurQIdx(0);

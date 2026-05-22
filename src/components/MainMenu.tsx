@@ -1,7 +1,7 @@
 
 
 interface MainMenuProps {
-  onSelectGame: (game: 'gomoku' | 'japanese') => void;
+  onSelectGame: (game: 'gomoku' | 'japanese' | 'go') => void;
 }
 
 export function MainMenu({ onSelectGame }: MainMenuProps) {
@@ -177,6 +177,83 @@ export function MainMenu({ onSelectGame }: MainMenuProps) {
             }}
           >
             開始修煉 ▶️
+          </button>
+        </div>
+
+        {/* Game 3 Card: Go Arena */}
+        <div 
+          className="glass-panel main-menu-card" 
+          onClick={() => onSelectGame('go')}
+          style={{ 
+            cursor: 'pointer',
+            padding: '2.5rem 2rem',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            textAlign: 'center',
+            gap: '1.5rem',
+            position: 'relative',
+            overflow: 'hidden'
+          }}
+        >
+          {/* Decorative Glowing Circle */}
+          <div style={{
+            position: 'absolute',
+            width: '120px',
+            height: '120px',
+            background: 'radial-gradient(circle, rgba(207, 168, 98, 0.12) 0%, transparent 70%)',
+            top: '-20px',
+            right: '-20px',
+            borderRadius: '50%'
+          }} />
+
+          <div style={{ 
+            fontSize: '4.5rem', 
+            background: 'rgba(255,255,255,0.02)', 
+            width: '110px', 
+            height: '110px', 
+            borderRadius: '50%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            boxShadow: '0 4px 20px rgba(0,0,0,0.2)',
+            border: '1px solid rgba(255,255,255,0.05)'
+          }}>
+            ☯️
+          </div>
+
+          <div>
+            <h2 style={{ 
+              fontFamily: "'Noto Sans TC', sans-serif", 
+              color: 'var(--accent-gold)', 
+              fontSize: '1.8rem', 
+              margin: '0 0 0.6rem 0',
+              fontWeight: 700
+            }}>
+              圍棋對弈場
+            </h2>
+            <p style={{ 
+              color: 'var(--text-muted)', 
+              fontSize: '0.9rem', 
+              lineHeight: '1.6', 
+              margin: 0 
+            }}>
+              經典東方智慧博弈。支援 19x19、13x13 與 9x9 規格，完美計算氣與提子，限制打劫與自殺禁著點，附設即時局勢估算與全自動數子判定。
+            </p>
+          </div>
+
+          <button 
+            className="action-btn" 
+            style={{ 
+              width: '100%', 
+              background: 'linear-gradient(135deg, rgba(207, 168, 98, 0.2) 0%, rgba(207, 168, 98, 0.4) 100%)',
+              borderColor: 'var(--accent-gold)',
+              fontWeight: 'bold',
+              letterSpacing: '2px',
+              marginTop: '0.5rem'
+            }}
+          >
+            落子定乾坤 ▶️
           </button>
         </div>
       </main>
