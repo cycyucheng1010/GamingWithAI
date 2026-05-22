@@ -240,6 +240,25 @@ function calculateTerritories(board: number[][], size: number) {
   return territory;
 }
 
+const GO_RULES_DATA = [
+  {
+    title: '提子 (Capture)',
+    content: '當對手群組的所有相鄰空點（「氣」）皆被我方棋子封鎖封閉時，即可將該敵子從棋盤上移去，計入提子數。'
+  },
+  {
+    title: '自殺禁著點 (Suicide Rule)',
+    content: '落子點在盤面上必須有生存的「氣」。若落子後該群組氣數歸零且無法提吃任何敵子，則屬禁著點（自殺限制），系統會阻止落子。'
+  },
+  {
+    title: '打劫與全局同型再現 (Superko)',
+    content: '為防止棋局陷入無限循環的重複狀態（如劫爭互提），系統禁止下出任何會複製歷史棋盤全局狀態的落子。'
+  },
+  {
+    title: '勝負裁決與數子法 (Area Scoring)',
+    content: '雙方連續虛手（Pass）或有一方宣告認輸（Resign）即進入終局結算。系統採用標準中國數子法，統計盤面活棋子數與所圍空地總和，白棋計入貼目補償 7.5 目以評定勝負。'
+  }
+];
+
 interface GoGameProps {
   onBackToMenu: () => void;
 }
@@ -267,6 +286,13 @@ export function GoGame({ onBackToMenu }: GoGameProps) {
   const [showEstimate, setShowEstimate] = useState(false);
   const [hoveredCell, setHoveredCell] = useState<{ r: number; c: number } | null>(null);
   const [lastPlacements, setLastPlacements] = useState<{ r: number; c: number } | null>(null);
+  const [rulesExpanded, setRulesExpanded] = useState(false);
+  const [activeRuleIdx, setActiveRuleIdx] = useState<number | null>(null);
+
+  const handleToggleRule = (idx: number) => {
+    audio.playClick();
+    setActiveRuleIdx(prev => prev === idx ? null : idx);
+  };
 
   // Monitor captures to trigger capture sound FX
   const prevCaptures = useRef(captures);
@@ -637,26 +663,107 @@ export function GoGame({ onBackToMenu }: GoGameProps) {
             </div>
           </div>
 
-          {/* Rules / Guides Info panel below board */}
+          {/* Collapsible Rules / Guides Info panel below board */}
           <div style={{
             marginTop: '1.5rem',
             background: 'rgba(0,0,0,0.15)',
             border: '1px solid rgba(255,255,255,0.02)',
             borderRadius: '8px',
-            padding: '0.8rem 1rem',
             width: '100%',
-            maxWidth: '580px',
-            fontSize: '0.8rem',
+            maxWidth: '760px',
+            fontSize: '0.85rem',
             color: 'var(--text-muted)',
-            lineHeight: '1.5'
+            lineHeight: '1.6',
+            overflow: 'hidden',
+            transition: 'all 0.3s ease'
           }}>
-            📋 <strong>圍棋規則提示</strong>：
-            <ul>
-              <li><strong>提子</strong>：將對手群組的所有「氣」（鄰近空點）封鎖即可提子。</li>
-              <li><strong>自殺禁著點</strong>：若落子後該群組氣為 0 且未提吃敵子，則屬自殺，禁止落子。</li>
-              <li><strong>打劫/同型再現</strong>：禁止全局同型再現（Superko），防止重複局面無限循環。</li>
-              <li><strong>勝負計算</strong>：雙方連續虛手（Pass）將觸發<strong>數子法（Area Scoring）</strong>自動計算地盤與棋子，貼黑 7.5 目以定勝負。</li>
-            </ul>
+            {/* Header / Click trigger */}
+            <div 
+              onClick={() => { audio.playClick(); setRulesExpanded(!rulesExpanded); }}
+              style={{
+                padding: '0.8rem 1.2rem',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                cursor: 'pointer',
+                background: 'rgba(255,255,255,0.02)',
+                userSelect: 'none',
+                fontWeight: 600,
+                color: 'var(--accent-gold)'
+              }}
+            >
+              <span>📋 圍棋規則提示與落子說明</span>
+              <span style={{ fontSize: '0.75rem', transition: 'transform 0.2s', transform: rulesExpanded ? 'rotate(90deg)' : 'rotate(0deg)' }}>
+                ▶️
+              </span>
+            </div>
+
+            {/* Expandable list items */}
+            {rulesExpanded && (
+              <div style={{
+                borderTop: '1px solid rgba(255,255,255,0.03)',
+                padding: '0.5rem 0',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '0.2rem'
+              }}>
+                {GO_RULES_DATA.map((rule, idx) => {
+                  const isOpen = activeRuleIdx === idx;
+                  return (
+                    <div 
+                      key={idx} 
+                      style={{
+                        borderBottom: idx < GO_RULES_DATA.length - 1 ? '1px solid rgba(255,255,255,0.02)' : 'none',
+                        transition: 'background-color 0.2s'
+                      }}
+                    >
+                      <div 
+                        onClick={() => handleToggleRule(idx)}
+                        style={{
+                          padding: '0.65rem 1.2rem',
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          alignItems: 'center',
+                          cursor: 'pointer',
+                          userSelect: 'none',
+                          fontWeight: 500,
+                          fontSize: '0.82rem',
+                          color: isOpen ? 'var(--accent-gold)' : 'var(--text-main)',
+                          background: isOpen ? 'rgba(255, 255, 255, 0.01)' : 'transparent',
+                          transition: 'all 0.2s'
+                        }}
+                      >
+                        <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                          <span style={{ color: 'var(--accent-gold)', opacity: 0.8 }}>⚡</span>
+                          <strong>{rule.title}</strong>
+                        </span>
+                        <span style={{ 
+                          fontSize: '0.7rem', 
+                          transition: 'transform 0.2s', 
+                          transform: isOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+                          opacity: 0.6
+                        }}>
+                          ▶️
+                        </span>
+                      </div>
+                      
+                      {isOpen && (
+                        <div style={{
+                          padding: '0.4rem 1.2rem 0.8rem 2.0rem',
+                          fontSize: '0.8rem',
+                          color: 'var(--text-muted)',
+                          lineHeight: '1.5',
+                          background: 'rgba(0,0,0,0.08)',
+                          animation: 'fadeIn 0.3s ease'
+                        }}>
+                          {rule.content}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </section>
       </main>
